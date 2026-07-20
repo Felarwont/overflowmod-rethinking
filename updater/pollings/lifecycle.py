@@ -18,7 +18,8 @@ def check_lifecycle() -> None:
         event.emit(PlayerConnectEvent(name))
     
     for account_id in left:
-        name = roster.get_player_spec(account_id).account_name
-        event.emit(PlayerDisconnectEvent(name))
+        print("Disconnect")
+        # name = roster.get_player_spec(account_id).account_name
+        # event.emit(PlayerDisconnectEvent(name))
     
     old_account_ids = current_acc_ids
