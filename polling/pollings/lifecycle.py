@@ -1,10 +1,10 @@
-from app import updater, event
+from app import polling, event, pcache
 from event.types import PlayerConnectEvent, PlayerDisconnectEvent
 import roster
 
 old_account_ids = set()
 
-@updater.every(0.5)
+@polling.every(0.5)
 def check_lifecycle() -> None:
     global old_account_ids
 
@@ -14,12 +14,13 @@ def check_lifecycle() -> None:
     left = old_account_ids.difference(current_acc_ids)
 
     for account_id in joined:
-        name = roster.get_player_spec(account_id).account_name
-        event.emit(PlayerConnectEvent(name))
+        pspec = roster.get_player_spec(account_id)
+        event.emit(PlayerConnectEvent(pspec))
     
     for account_id in left:
-        print("Disconnect")
-        # name = roster.get_player_spec(account_id).account_name
-        # event.emit(PlayerDisconnectEvent(name))
+        pspec = pcache.get(account_id)
+        if pspec is None:
+            raise KeyError("Игрок не найден в кэше.")
+        event.emit(PlayerDisconnectEvent(pspec))
     
     old_account_ids = current_acc_ids

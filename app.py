@@ -1,5 +1,8 @@
 from event.engine import EventSystem
-from updater.engine import Updater
+from polling.engine import Polling
+from player.cache import PlayerCache
 
 event = EventSystem()
-updater = Updater()
+polling = Polling()
+
+pcache = PlayerCache()

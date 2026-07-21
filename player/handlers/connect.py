@@ -1,6 +1,7 @@
-from app import event
+from app import event, pcache
 from event.types import PlayerConnectEvent
 
 @event.subscribe(PlayerConnectEvent)
 def on_connect(event: PlayerConnectEvent):
-    print(f"[CONNECT] player {event.player} connected")
+    pcache.append(event.player)
+    print(f"[INFO] Player connected: {event.player.account_name}")

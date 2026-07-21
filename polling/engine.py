@@ -1,3 +1,5 @@
+from babase import AppTimer
+
 from typing import Callable
 import time
 
@@ -17,7 +19,7 @@ class Task:
             self.callback()
             self.last_update_time = now
 
-class Updater:
+class Polling:
     def __init__(self):
         self.tasks: list[Task] = list()
     
@@ -31,3 +33,6 @@ class Updater:
     def update(self) -> None:
         for task in self.tasks:
             task.update()
+    
+    def start(self) -> None:
+        self.timer = AppTimer(0.2, self.update, True)
