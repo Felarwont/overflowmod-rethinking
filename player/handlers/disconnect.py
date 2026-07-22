@@ -1,5 +1,5 @@
 from app import event, pcache
-from event.types import PlayerDisconnectEvent
+from core.event.types import PlayerDisconnectEvent
 
 @event.subscribe(PlayerDisconnectEvent)
 def on_connect(event: PlayerDisconnectEvent):

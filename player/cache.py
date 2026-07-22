@@ -1,4 +1,4 @@
-from roster import PlayerSpec
+from core.roster import PlayerSpec
 
 class PlayerCache:
     def __init__(self):

@@ -1,5 +1,5 @@
-from event.engine import EventSystem
-from polling.engine import Polling
+from core.event.engine import EventSystem
+from core.polling.engine import Polling
 from player.cache import PlayerCache
 
 event = EventSystem()

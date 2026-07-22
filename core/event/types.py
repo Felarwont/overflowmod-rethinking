@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from roster import PlayerSpec
+from core.roster import PlayerSpec
 
 class Event:
     pass

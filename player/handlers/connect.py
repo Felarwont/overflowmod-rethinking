@@ -1,5 +1,5 @@
 from app import event, pcache
-from event.types import PlayerConnectEvent
+from core.event.types import PlayerConnectEvent
 
 @event.subscribe(PlayerConnectEvent)
 def on_connect(event: PlayerConnectEvent):

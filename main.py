@@ -5,7 +5,7 @@ from app import polling
 
 def main():
     from player import handlers
-    from polling import pollings
+    from core.polling import pollings
 
 
 # ba_meta export babase.Plugin

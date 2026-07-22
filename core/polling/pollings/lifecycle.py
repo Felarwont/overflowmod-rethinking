@@ -1,6 +1,6 @@
 from app import polling, event, pcache
-from event.types import PlayerConnectEvent, PlayerDisconnectEvent
-import roster
+from core.event.types import PlayerConnectEvent, PlayerDisconnectEvent
+import core.roster as roster
 
 old_account_ids = set()
 
