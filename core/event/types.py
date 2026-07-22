@@ -1,19 +1,19 @@
 from dataclasses import dataclass
 
-from core.roster import PlayerSpec
+from player.models import ServerPlayer
 
 class Event:
     pass
 
 @dataclass(slots=True, frozen=True)
 class PlayerConnectEvent(Event):
-    player: PlayerSpec
+    player: ServerPlayer
 
 @dataclass(slots=True, frozen=True)
 class PlayerDisconnectEvent(Event):
-    player: PlayerSpec
+    player: ServerPlayer
 
 @dataclass(slots=True, frozen=True)
 class PlayerDiedEvent(Event):
-    player: PlayerSpec
-    killer: PlayerSpec | None
+    player: ServerPlayer
+    killer: ServerPlayer | None

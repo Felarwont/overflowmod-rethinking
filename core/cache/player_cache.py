@@ -1,13 +1,13 @@
-from core.roster import PlayerSpec
+from player.models import ServerPlayer
 
 class PlayerCache:
     def __init__(self):
-        self.players: dict[str, PlayerSpec] = dict()
+        self.players: dict[str, ServerPlayer] = dict()
     
-    def append(self, pspec: PlayerSpec) -> None:
+    def add(self, pspec: ServerPlayer) -> None:
         self.players[pspec.account_id] = pspec
     
-    def remove(self, account_id: str) -> PlayerSpec:
+    def remove(self, account_id: str) -> ServerPlayer:
         pspec = self.players.pop(account_id)
 
         if pspec is None:
@@ -15,5 +15,5 @@ class PlayerCache:
 
         return pspec
     
-    def get(self, account_id: str) -> PlayerSpec | None:
+    def get(self, account_id: str) -> ServerPlayer | None:
         return self.players.get(account_id)

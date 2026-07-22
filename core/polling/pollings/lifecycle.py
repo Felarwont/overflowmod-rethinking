@@ -1,6 +1,7 @@
 from app import polling, event, pcache
 from core.event.types import PlayerConnectEvent, PlayerDisconnectEvent
 import core.roster as roster
+from player.models import ServerPlayer
 
 old_account_ids = set()
 
@@ -15,12 +16,12 @@ def check_lifecycle() -> None:
 
     for account_id in joined:
         pspec = roster.get_player_spec(account_id)
-        event.emit(PlayerConnectEvent(pspec))
+        event.emit(PlayerConnectEvent(ServerPlayer.from_spec(pspec)))
     
     for account_id in left:
         pspec = pcache.get(account_id)
         if pspec is None:
             raise KeyError("Игрок не найден в кэше.")
-        event.emit(PlayerDisconnectEvent(pspec))
+        event.emit(PlayerDisconnectEvent(ServerPlayer.from_spec(pspec)))
     
     old_account_ids = current_acc_ids
