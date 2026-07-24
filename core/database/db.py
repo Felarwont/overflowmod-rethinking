@@ -1,28 +1,41 @@
 import sqlite3
+from pathlib import Path
+from typing import Any
+
+from .models import GameBaseModel
+
+data_path = Path(__file__).resolve().parents[2] / "data" / "data.db"
 
 class Database:
     def __init__(self):
-        self.connection = sqlite3.connect("../../data/data.db")
-
-    def execute(self, query: str, params: tuple = ()):
+        self.connection = sqlite3.connect(data_path)
+    
+    def create_table(self, table: type[GameBaseModel]):
         with self.connection:
-            self.connection.execute(query, params)
+            self.connection.execute(table.create_query())
 
-    def fetch_one(self, query: str, params: tuple = ()):
+    def execute(self, query: str, params: tuple = ()) -> int:
+        with self.connection:
+            cursor = self.connection.cursor()
+            cursor.execute(query, params)
+
+            return cursor.rowcount
+
+    def fetch_one(self, query: str, params: tuple = ()) -> Any:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
 
             return cursor.fetchone()
 
-    def fetch_all(self, query: str, params: tuple = ()):
+    def fetch_all(self, query: str, params: tuple = ()) -> list[Any]:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
 
             return cursor.fetchall()
 
-    def fetch_many(self, query: str, size: int, params: tuple = ()):
+    def fetch_many(self, query: str, size: int, params: tuple = ()) -> list[Any]:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
