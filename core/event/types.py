@@ -1,9 +1,14 @@
 from dataclasses import dataclass
 
 from player.models import ServerPlayer
+from core.roster import PlayerSpec
 
 class Event:
     pass
+
+@dataclass(slots=True, frozen=True)
+class InternalPlayerConnectEvent(Event):
+    player: PlayerSpec
 
 @dataclass(slots=True, frozen=True)
 class PlayerConnectEvent(Event):

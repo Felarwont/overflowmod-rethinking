@@ -3,6 +3,7 @@ from sqlite3 import IntegrityError
 from core.database.db import Database
 from core.database.models import Players
 from player.models import ServerPlayer
+from .exception import PlayerAlreadyExist
 
 class PlayerRepository:
     def __init__(self, database: Database):
@@ -25,6 +26,7 @@ class PlayerRepository:
             )
         except IntegrityError:
             print(f"[WARNING] Player {player.account_id}/{player.account_name} already exist") # Можно еще добавить raise PlayerAlreadyExist()
+            raise PlayerAlreadyExist(player.account_id)
 
     def get(self, account_id: str) -> ServerPlayer | None:
         db_player = self.db.fetch_one(
