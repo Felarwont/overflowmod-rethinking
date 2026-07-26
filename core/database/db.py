@@ -21,23 +21,26 @@ class Database:
 
             return cursor.rowcount
 
-    def fetch_one(self, query: str, params: tuple = ()) -> Any:
+    def fetch_one(self, query: str, params: tuple = ()) -> tuple[Any]:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
 
             return cursor.fetchone()
 
-    def fetch_all(self, query: str, params: tuple = ()) -> list[Any]:
+    def fetch_all(self, query: str, params: tuple = ()) -> list[tuple]:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
 
             return cursor.fetchall()
 
-    def fetch_many(self, query: str, size: int, params: tuple = ()) -> list[Any]:
+    def fetch_many(self, query: str, size: int, params: tuple = ()) -> list[tuple]:
         with self.connection:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
 
             return cursor.fetchmany(size)
+
+    def close(self) -> None:
+        self.connection.close()

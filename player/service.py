@@ -41,3 +41,8 @@ class PlayerService:
         self.cache.add(player)
 
         return player
+
+    def handle_disconnect(self, player: ServerPlayer) -> ServerPlayer:
+        self.repository.update(player)
+
+        return self.cache.remove(player.account_id)

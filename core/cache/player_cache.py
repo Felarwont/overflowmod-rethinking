@@ -8,7 +8,7 @@ class PlayerCache:
         self.players[player.account_id] = player
     
     def remove(self, account_id: str) -> ServerPlayer:
-        player = self.players.pop(account_id)
+        player = self.players.pop(account_id, None)
 
         if player is None:
             pass
