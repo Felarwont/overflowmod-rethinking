@@ -1,7 +1,9 @@
 # ba_meta require api 9
+import logging
+
 import babase
 
-from app import polling, db
+from core.logger import setup_logger
 
 def load_handlers():
     from player import handlers
@@ -10,18 +12,24 @@ def load_handlers():
 def main():
     load_handlers()
 
+setup_logger()
+logger = logging.getLogger("overflowmod")
 
 # ba_meta export babase.Plugin
 class OverFlowMod(babase.Plugin):
     def on_app_running(self):
+        main()
+
+        from app import polling
         polling.start()
         
-        main()
-        print("overflowmod started!")
+        logger.info("overflowmod started!")
 
         return super().on_app_running()
 
     def on_app_shutdown_complete(self):
+        from app import db
+
         db.close()
-        print("[INFO] Database closed")
+        logger.debug("[INFO] Database closed")
         return super().on_app_shutdown_complete()

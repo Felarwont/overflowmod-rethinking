@@ -1,8 +1,12 @@
+import logging
+
 from .repository import PlayerRepository
 from core.cache.player_cache import PlayerCache
 from player.models import ServerPlayer
 from core.roster import PlayerSpec
 from .exception import PlayerAlreadyExist
+
+logger = logging.getLogger("overflowmod")
 
 class PlayerService:
     def __init__(self,
@@ -30,12 +34,9 @@ class PlayerService:
 
         if player is None:
             player = ServerPlayer.from_spec(pspec)
-            try:
-                self.repository.create(player)
-                print(f"[INFO] Player {player.account_name} created in database")
-            except PlayerAlreadyExist as e:
-                print(e)
-                raise
+            self.repository.create(player)
+            self.repository.create(player)
+            logger.info("Player %s created in database", player.account_name)
 
         player.client_id = pspec.client_id
         self.cache.add(player)

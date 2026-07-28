@@ -20,8 +20,7 @@ def check_lifecycle() -> None:
     
     for account_id in left:
         player = pcache.get(account_id)
-        if player is None:
-            raise PlayerNotFound(account_id, "Player not found in cache")
-        event.emit(PlayerDisconnectEvent(player))
+        if player:
+            event.emit(PlayerDisconnectEvent(player))
     
     old_account_ids = current_acc_ids
