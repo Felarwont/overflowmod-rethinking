@@ -1,7 +1,7 @@
-from babase import AppTimer
-
-from typing import Callable
 import time
+from typing import Callable
+
+from babase import AppTimer
 
 class Task:
     def __init__(

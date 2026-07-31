@@ -4,7 +4,7 @@ from typing import Any
 
 from .models import GameBaseModel
 
-data_path = Path(__file__).resolve().parents[2] / "data" / "data.db"
+data_path = Path(__file__).resolve().parents[4] / "overflowmod" / "data" / "data.db"
 
 class Database:
     def __init__(self):

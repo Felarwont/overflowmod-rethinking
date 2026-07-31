@@ -1,4 +1,4 @@
-from core.roster import PlayerSpec
+from overflowmod.src.core.roster import PlayerSpec
 
 class ServerPlayer:
     def __init__(self,

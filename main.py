@@ -3,11 +3,11 @@ import logging
 
 import babase
 
-from core.logger import setup_logger
+from overflowmod.src.core.logger import setup_logger
 
 def load_handlers():
-    from player import handlers
-    from core.polling import pollings
+    from overflowmod.src.players import handlers
+    from overflowmod.src.core.polling import pollings
 
 def main():
     load_handlers()

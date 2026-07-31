@@ -1,9 +1,9 @@
 import logging
 from sqlite3 import IntegrityError
 
-from core.database.db import Database
-from core.database.models import Players
-from player.models import ServerPlayer
+from overflowmod.src.core.database.db import Database
+from overflowmod.src.core.database.models import Players
+from overflowmod.src.players.models import ServerPlayer
 from .exception import PlayerAlreadyExist
 
 logger = logging.getLogger("overflowmod")

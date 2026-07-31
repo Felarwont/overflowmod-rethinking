@@ -1,11 +1,11 @@
-from core.event.engine import EventSystem
-from core.polling.engine import Polling
-from core.cache.player_cache import PlayerCache
-from core.database.db import Database
-from player.repository import PlayerRepository
-from player.service import PlayerService
+from overflowmod.src.core.event.engine import EventBus
+from overflowmod.src.core.polling.engine import Polling
+from overflowmod.src.core.cache.player_cache import PlayerCache
+from overflowmod.src.core.database.db import Database
+from overflowmod.src.players.repository import PlayerRepository
+from overflowmod.src.players.service import PlayerService
 
-event = EventSystem()
+event_bus = EventBus()
 polling = Polling()
 
 pcache = PlayerCache()

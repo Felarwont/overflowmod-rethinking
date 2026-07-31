@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from player.models import ServerPlayer
-from core.roster import PlayerSpec
+from overflowmod.src.players.models import ServerPlayer
+from overflowmod.src.core.roster import PlayerSpec
 
 class Event:
     pass

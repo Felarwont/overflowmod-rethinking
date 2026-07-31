@@ -1,10 +1,9 @@
 import logging
 
 from .repository import PlayerRepository
-from core.cache.player_cache import PlayerCache
-from player.models import ServerPlayer
-from core.roster import PlayerSpec
-from .exception import PlayerAlreadyExist
+from overflowmod.src.core.cache.player_cache import PlayerCache
+from overflowmod.src.players.models import ServerPlayer
+from overflowmod.src.core.roster import PlayerSpec
 
 logger = logging.getLogger("overflowmod")
 
@@ -34,7 +33,6 @@ class PlayerService:
 
         if player is None:
             player = ServerPlayer.from_spec(pspec)
-            self.repository.create(player)
             self.repository.create(player)
             logger.info("Player %s created in database", player.account_name)
 

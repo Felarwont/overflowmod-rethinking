@@ -1,6 +1,6 @@
 from .types import Event
 
-class EventSystem:
+class EventBus:
     def __init__(self):
         self.handlers: dict[type[Event], list] = dict()
 

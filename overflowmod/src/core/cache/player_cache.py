@@ -1,4 +1,4 @@
-from player.models import ServerPlayer
+from overflowmod.src.players.models import ServerPlayer
 
 class PlayerCache:
     def __init__(self):
