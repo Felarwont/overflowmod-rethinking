@@ -3,17 +3,12 @@ import logging
 
 import babase
 
-from overflowmod.src.core.logger import setup_logger
-
-def load_handlers():
-    from overflowmod.src.players import handlers
-    from overflowmod.src.core.polling import pollings
+from overflowmod.src.core import bootstrap
 
 def main():
-    load_handlers()
-
-setup_logger()
-logger = logging.getLogger("overflowmod")
+    bootstrap.setup_logger()
+    bootstrap.load_handlers()
+    bootstrap.apply_patches()
 
 # ba_meta export babase.Plugin
 class OverFlowMod(babase.Plugin):
@@ -22,7 +17,8 @@ class OverFlowMod(babase.Plugin):
 
         from app import polling
         polling.start()
-        
+
+        logger = logging.getLogger("overflowmod")
         logger.info("overflowmod started!")
 
         return super().on_app_running()
@@ -31,5 +27,7 @@ class OverFlowMod(babase.Plugin):
         from app import db
 
         db.close()
-        logger.debug("[INFO] Database closed")
+
+        logger = logging.getLogger("overflowmod")
+        logger.debug("Database closed")
         return super().on_app_shutdown_complete()
