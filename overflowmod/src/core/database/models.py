@@ -12,7 +12,7 @@ class Players(GameBaseModel):
     def create_query():
         return """
             CREATE TABLE IF NOT EXISTS players (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY,
                 account_id TEXT NOT NULL UNIQUE,
                 account_name TEXT NOT NULL,
                 kills INTEGER NOT NULL DEFAULT 0 CHECK (kills >= 0),

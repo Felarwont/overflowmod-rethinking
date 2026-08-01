@@ -30,4 +30,5 @@ class OverFlowMod(babase.Plugin):
 
         logger = logging.getLogger("overflowmod")
         logger.debug("Database closed")
+
         return super().on_app_shutdown_complete()

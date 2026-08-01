@@ -9,4 +9,4 @@ logger = logging.getLogger("overflowmod")
 def on_connect(event: PlayerDisconnectEvent):
     pservice.handle_disconnect(event.player)
 
-    logger.info("Player disconnected: %s (%s)", event.player.account_name, event.player.client_id)
+    logger.debug("Player disconnected: %s (%s)", event.player.account_name, event.player.client_id)

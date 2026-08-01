@@ -25,5 +25,5 @@ def on_internal_connect(event: InternalPlayerConnectEvent):
         event_bus.emit(PlayerConnectEvent(player))
 
 @event_bus.subscribe(PlayerConnectEvent)
-def on_connect(event: PlayerConnectEvent):
-    logger.info("Player connected: %s (%s)", event.player.account_name, event.player.client_id)
+def log(event: PlayerConnectEvent):
+    logger.debug("Player connected: %s (%s)", event.player.account_name, event.player.client_id)

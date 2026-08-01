@@ -25,7 +25,7 @@ def check_lifecycle() -> None:
         player = pservice.get(account_id)
         if player:
             event_bus.emit(PlayerDisconnectEvent(player))
-        else:
-            logger.error("The player was not found in the cache when exiting")
+        # else:
+        #     logger.error("The player was not found in the cache when exiting")
     
     old_account_ids = current_acc_ids
